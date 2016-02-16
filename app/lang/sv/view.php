@@ -2,4 +2,5 @@
 
 return array(
   'switchlang' => 'Vill du se engelska uppdateringar istället?',
+  'otherlang' => 'en',
 );

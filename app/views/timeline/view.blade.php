@@ -76,4 +76,8 @@
   </div>
 </div>
 
+<div style="position: fixed; bottom: 0; left: 0; right: 0; height: 3em; line-height: 3em; text-align: center;">
+  <a href="{{ trans('view.otherlang') }}">{{ trans('view.switchlang') }}</a>
+</div>
+
 @stop
