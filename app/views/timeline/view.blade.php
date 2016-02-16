@@ -35,12 +35,13 @@
         jQuery.each(data, function(i, clutt){
           // Use the template
           var $newClutt = $templateClutt.clone();
-          // Put the relevant text in it
-          $newClutt.find('.message').text(clutt.text);
+          // Put the relevant info in it
+          $newClutt.data('id', clutt.id);
+          $newClutt.find('.message').html(clutt.html_message);
           // Prepare its position in the DOM
           $newClutt.prependTo('#clutts');
           // ...aaaaand ANIMATE CANNONS!
-          $newclutt.velocity('slideDown');
+          $newClutt.velocity('slideDown');
         });
       };
       request.send();
