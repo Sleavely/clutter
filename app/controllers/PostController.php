@@ -5,6 +5,14 @@ class PostController extends BaseController {
 
   public function getIndex()
   {
-    return View::make('timeline.post');
+    $view = View::make('timeline.post');
+
+    if(Session::has('created-clutt'))
+    {
+      $clutt = Clutt::findOrFail(Session::get('created-clutt'));
+      $view->withCreated($clutt);
+    }
+
+    return $view;
   }
 }
