@@ -43,6 +43,13 @@ class Clutt extends Eloquent {
     return $query->where('created_at', '>', $last_fetched);
   }
 
+  public function scopeInCurrentLanguage($query)
+  {
+    $language = Session::get('language', 'en');
+
+    return $query->where('language', $language);
+  }
+
   //TODO: this scope doesn't work since we're not authenticating.
   public function scopeByFollowed($query)
   {

@@ -19,7 +19,7 @@ class TimelineController extends BaseController {
 
   public function getClutts()
   {
-    $clutts = Clutt::sinceLastFetched();
+    $clutts = Clutt::sinceLastFetched()->inCurrentLanguage();
     Session::set('last-fetched', Carbon::now());
 
     return $clutts->get();
@@ -31,19 +31,24 @@ class TimelineController extends BaseController {
 
     // Validate input
     $rules = array(
-      'message' => 'required|max:140'
+      'message' => 'required|max:140',
     );
     $validator = Validator::make(Input::all(), $rules);
+
+    // Run validations
     if ($validator->fails())
     {
       $errors = $validator->errors()->all();
       return Redirect::action('PostController@getIndex')->withInput()->with('errors', $errors);
     }
     $message = strip_tags(Input::get('message'));
+    $language = (Input::get('language', 'en') == 'sv' ? 'sv' : 'en');
+    Session::set('language', $language);
 
     // If we got this far we probably did something right :)
     $clutt = new Clutt;
     $clutt->message = $message;
+    $clutt->language = $language;
     $clutt->save();
 
     // AJAX gets the whole clutt in response. Same if some other controller calls the method.
