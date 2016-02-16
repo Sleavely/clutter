@@ -36,8 +36,11 @@
           // Use the template
           var $newClutt = $templateClutt.clone();
           // Put the relevant info in it
-          $newClutt.data('id', clutt.id);
+          $newClutt.removeAttr('id');
+          $newClutt.data('clutt-id', clutt.id);
           $newClutt.find('.message').html(clutt.html_message);
+          $newClutt.find('.timestamp').html('<small title="'+ clutt.created_at +'">'+ clutt.created_at_relative +'</small>');
+
           // Prepare its position in the DOM
           $newClutt.prependTo('#clutts');
           // ...aaaaand ANIMATE CANNONS!
@@ -63,7 +66,12 @@
 
   <div id="template-clutt" class="row clutt" style="display: none;">
     <div class="col-sm-6 col-sm-offset-3">
-      <div class="message"></div>
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <div class="message"></div>
+          <div class="text-right timestamp"></a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

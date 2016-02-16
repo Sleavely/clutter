@@ -4,8 +4,11 @@ use Misd\Linkify\Linkify;
 
 class Clutt extends Eloquent {
 
-  // Have Eloquent automatically set html_message when exporting to array/JSON
-  protected $appends = array('html_message');
+  // Have Eloquent automatically include dynamic values when exporting to array/JSON
+  protected $appends = array(
+    'html_message',
+    'created_at_relative'
+  );
 
   /**
    * Getter for $clutt->html_message
@@ -22,6 +25,11 @@ class Clutt extends Eloquent {
     $str = nl2br($str);
 
     return $str;
+  }
+
+  public function getCreatedAtRelativeAttribute()
+  {
+    return $this->created_at->diffForHumans();
   }
 
   /**
