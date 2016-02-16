@@ -42,7 +42,8 @@ class TimelineController extends BaseController {
 
     // If we got this far we probably did something right :)
     $clutt = new Clutt;
-    //TODO: save to database lol.
+    $clutt->message = Input::get('message');
+    $clutt->save();
 
     // AJAX gets the whole clutt in response. Same if some other controller calls the method.
     if (Request::ajax() || $this->isInternal())
