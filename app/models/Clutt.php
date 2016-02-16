@@ -13,8 +13,15 @@ class Clutt extends Eloquent {
   public function getHtmlMessageAttribute()
   {
     $str = $this->message;
+
+    // Turn URLs to links
     $linkify = new Linkify;
-    return $linkify->process($str);
+    $str = $linkify->process($str);
+
+    // Inject some line breaks.
+    $str = nl2br($str);
+
+    return $str;
   }
 
   /**
