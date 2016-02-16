@@ -39,7 +39,7 @@
           $newClutt.removeAttr('id');
           $newClutt.data('clutt-id', clutt.id);
           $newClutt.find('.message').html(clutt.html_message);
-          $newClutt.find('.timestamp').html('<small title="'+ clutt.created_at +'">'+ clutt.created_at_relative +'</small>');
+          $newClutt.find('.timestamp').html('<small title="'+ clutt.created_at +'">'+ clutt.created_at +'</small>');
 
           // Prepare its position in the DOM
           $newClutt.prependTo('#clutts');
