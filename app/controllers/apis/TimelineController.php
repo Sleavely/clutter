@@ -39,10 +39,11 @@ class TimelineController extends BaseController {
       $errors = $validator->errors()->all();
       return Redirect::action('PostController@getIndex')->withInput()->with('errors', $errors);
     }
+    $message = strip_tags(Input::get('message'));
 
     // If we got this far we probably did something right :)
     $clutt = new Clutt;
-    $clutt->message = Input::get('message');
+    $clutt->message = $message;
     $clutt->save();
 
     // AJAX gets the whole clutt in response. Same if some other controller calls the method.
