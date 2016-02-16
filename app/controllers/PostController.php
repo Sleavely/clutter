@@ -5,7 +5,16 @@ class PostController extends BaseController {
 
   public function getIndex()
   {
-    return Redirect::to('post/'.Session::get('language', 'en'));
+    $redirect =  Redirect::to('post/'.Session::get('language', 'en'));
+    if(Session::has('created-clutt'))
+    {
+      $redirect->with('created-clutt', Session::get('created-clutt'));
+    }
+    if(Session::has('errors'))
+    {
+      $redirect->withInput()->with('errors', Session::get('errors', array()));
+    }
+    return $redirect;
   }
 
   private function makeView()

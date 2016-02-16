@@ -2,7 +2,7 @@
 
 @section('scripts')
   @parent
-  
+
   <script src="{{ asset('packages/bootstrap-maxlength/src/bootstrap-maxlength.js') }}"></script>
   <script>
   jQuery(document).ready(function(){
@@ -10,7 +10,7 @@
       alwaysShow: true,
       validate: false,
       allowOverMax: true,
-      customMaxAttribute: "90"
+      customMaxAttribute: "140"
     });
 
     var validateMessageLengths = function(e){
@@ -19,7 +19,7 @@
       if (jQuery('.form-control.overmax').length)
       {
         //TODO: do this more graciously?
-        alert('Theres too much clutter in your new clutter. Shorten it down!');
+        alert('{{ trans('post.maxlength') }}');
         e.preventDefault();
         return false;
       }
@@ -28,7 +28,7 @@
       if(!jQuery('textarea').val().trim().length)
       {
         //TODO: do this more graciously?
-        alert('You cant clutter without some text. Type something!');
+        alert('{{ trans('post.maxlength') }}');
         e.preventDefault();
         return false;
       }
@@ -52,7 +52,7 @@
 
   @if (isset($created))
   <div class="alert alert-success">
-    <strong>Success!</strong> Created clutt {{ $created->id }}
+    <strong>Success!</strong> {{ trans('post.success') }}
   </div>
   @endif
 
@@ -66,14 +66,15 @@
           <div class="panel-body">
             <div class="row">
               <div class="col-xs-12">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" class="form-control" rows="3" placeholder="Contribute with more clutter"></textarea>
+                <label for="message">{{ trans('post.message') }}</label>
+                <textarea id="message" name="message" class="form-control" rows="3" placeholder="{{ trans('post.placeholder') }}"></textarea>
               </div>
             </div>
             <br />
             <div class="row">
               <div class="col-xs-12">
-                <button type="submit" class="btn btn-success">Clutter</button>
+                <input type="hidden" name="language" value="{{ Session::get('language', 'en') }}" />
+                <button type="submit" class="btn btn-success">{{ trans('post.clutter') }}</button>
               </div>
             </div>
           </div>
@@ -81,6 +82,10 @@
       </form>
     </div>
   </div>
+</div>
+
+<div style="position: fixed; bottom: 0; left: 0; right: 0; height: 3em; line-height: 3em; text-align: center;">
+  <a href="{{ trans('post.otherlang') }}">{{ trans('post.switchlang') }}</a>
 </div>
 
 @stop
