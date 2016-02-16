@@ -42,6 +42,8 @@ class TimelineController extends BaseController {
       return Redirect::action('PostController@getIndex')->withInput()->with('errors', $errors);
     }
     $message = strip_tags(Input::get('message'));
+
+    //TODO: this should check for the language's existance rather than use a rudimentary equality check
     $language = (Input::get('language', 'en') == 'sv' ? 'sv' : 'en');
     Session::set('language', $language);
 
