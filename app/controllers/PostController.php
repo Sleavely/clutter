@@ -28,7 +28,7 @@ class PostController extends BaseController {
     return $this->makeView();
   }
 
-  public function getSe()
+  public function getSv()
   {
     Session::set('language', 'sv');
     App::setLocale('sv');
