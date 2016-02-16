@@ -43,6 +43,8 @@
 @section('content')
 <div style="margin-top: 1em;">
 
+  <!-- //TODO: multi-language! -->
+
   @foreach ($errors as $message)
   <div class="alert alert-danger">
     <strong>Oh snap!</strong> {{ $message }}
