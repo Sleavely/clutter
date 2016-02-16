@@ -13,3 +13,8 @@
 
 * Surf to `/tv` to watch clutter appear.
 * Surf to `/post` (or `/`) to contribute.
+* Change language at the bottom of the screen.
+
+## Known issues
+
+* Posting to one language while at the same time having a tab open within the same session on the other language's TV page will cause the clutter to appear in the TV tab regardless. This is due to the language handling being stored in the session.
