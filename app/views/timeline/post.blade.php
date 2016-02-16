@@ -2,8 +2,7 @@
 
 @section('scripts')
   @parent
-
-  <script async src="//cdn.embedly.com/widgets/platform.js"></script>
+  
   <script src="{{ asset('packages/bootstrap-maxlength/src/bootstrap-maxlength.js') }}"></script>
   <script>
   jQuery(document).ready(function(){
